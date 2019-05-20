@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
  * @author Felix
  * @date 2019/5/12 15:42
  */
+//登陆时，用户输入的手机和密码封装进LoginVo对象中
 public class LoginVo {
     @NotNull
     @isMobile

@@ -128,11 +128,11 @@ spring.resources.static-locations=classpath:/static/
 
 
 
-![1558773712407](C:\Users\我\AppData\Roaming\Typora\typora-user-images\1558773712407.png)
+![1558773712407](https://github.com/Felixgitcode/miaosha/blob/master/image/1558773712407.png)
 
 ### 2、字段：
 
-![1558774479896](C:\Users\我\AppData\Roaming\Typora\typora-user-images\1558774479896.png)
+![1558774479896](https://github.com/Felixgitcode/miaosha/blob/master/image/1558774479896.png)
 
 
 

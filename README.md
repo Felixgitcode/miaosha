@@ -1,10 +1,42 @@
-[toc]
-
 # miaosha
 
 基于IDEA+Maven+SSM框架的高并发商品秒杀项目,
 
 使用技术：Springboot+redis+Mybatis+thymeleaf。
+
+#目录
+```java
+一、框架搭建及部署：
+- 1、Linux安装redis
+- 2、IDEA集成依赖
+- 3、application.properties配置信息
+
+二、数据库的设计
+- 1、表：
+- 2、字段：
+
+三、用户登录及分布式session
+- 1、实现用户登录功能
+- 2、分布式session
+
+四、秒杀功能开发
+- 1、商品详情页
+- 2、秒杀功能实现
+- 3、订单详情页
+
+五、秒杀压测
+- 1、安装Jmeter
+- 2、Jmeter压测
+
+六、页面高并发秒杀优化
+- 1、页面缓存+对象缓存
+- 2、页面静态化分离
+
+七、服务级高并发秒杀优化
+- 1、安装与集成RabbitMQ
+- 2、秒杀接口优化
+
+```
 
 ## 一、框架搭建及部署：
 

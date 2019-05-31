@@ -1,4 +1,5 @@
 package com.imooc.miaosha.validator;
+
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
@@ -12,21 +13,18 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-/**
- * @author Felix
- * @date 2019/5/16 8:33
- */
+
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @Documented
 @Constraint(validatedBy = {IsMobileValidator.class })
-public @interface isMobile {
+public @interface  IsMobile {
+	
+	boolean required() default true;
+	
+	String message() default "手机号码格式错误";
 
-    boolean required() default true;
+	Class<?>[] groups() default { };
 
-    java.lang.String message() default "手机号码格式错误";
-
-    java.lang.Class<?>[] groups() default {};
-
-    java.lang.Class<? extends javax.validation.Payload>[] payload() default {};
+	Class<? extends Payload>[] payload() default { };
 }

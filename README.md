@@ -1,10 +1,15 @@
+[TOC]
+
 # miaosha
 
 基于IDEA+Maven+SSM框架的高并发商品秒杀项目,
 
 使用技术：Springboot+redis+Mybatis+thymeleaf。
 
+
+
 #目录
+
 ```java
 一、框架搭建及部署：
 - 1、Linux安装redis
@@ -36,7 +41,14 @@
 - 1、安装与集成RabbitMQ
 - 2、秒杀接口优化
 
+八、安全优化
+- 1、秒杀接口地址隐藏
+- 2、数学公式验证码
+- 3、接口限流防刷
+
 ```
+
+
 
 ## 一、框架搭建及部署：
 
@@ -160,11 +172,11 @@ spring.resources.static-locations=classpath:/static/
 
 
 
-![1558773712407](https://github.com/Felixgitcode/miaosha/blob/master/image/1558773712407.png)
+![1558773712407](C:\Users\我\AppData\Roaming\Typora\typora-user-images\1558773712407.png)
 
 ### 2、字段：
 
-![1558774479896](https://github.com/Felixgitcode/miaosha/blob/master/image/1558774479896.png)
+![1558774479896](C:\Users\我\AppData\Roaming\Typora\typora-user-images\1558774479896.png)
 
 
 
@@ -379,3 +391,46 @@ public boolean login(HttpServletResponse response, LoginVo loginVo) {
 ### 2、页面静态化分离
 
 将商品详情、秒杀、订单页面静态化，在访问是，页面的静态化内容交给浏览器缓存，动态内容则直接从服务器获取，能有效提高访问速度，提升用户体验。
+
+
+
+## 七、服务级高并发秒杀优化
+
+### 1、安装与集成RabbitMQ
+
+
+
+### 2、秒杀接口优化
+
+思路：减少数据库的访问。
+
+- （1）系统初始化时，把商品库存数量加载到redis中。
+- （2）收到请求时，redis预减库存，若库存不足则直接返回失败，若还有库存则进入（3）。
+- （3）请求入队，立即返回“排队中”
+- （4）请求出队，生成订单，减少库存
+- （5）客户端轮询，是否秒杀成功
+
+
+
+## 八、安全优化
+
+### 1、秒杀接口地址隐藏
+
+秒杀开始前，秒杀接口的地址不是固定不变的，而是动态变化的，需要先去请求接口获取秒杀地址
+
+- （1）接口改造，带上PathVariable参数
+- （2）添加生成地址的接口
+- （3）秒杀收到请求，先验证PathVariable参数
+
+### 2、数学公式验证码
+
+点击秒杀之前，需要先输入验证码，分散用户请求，防止一瞬间的密集请求，减轻服务器压力，并且防止机器恶意刷单
+
+- （1）添加生成验证码的接口
+- （2）在获取秒杀路径的时候，验证验证码
+- （3）使用ScriptEngine
+
+### 3、接口限流防刷
+
+比如说限制用户在60秒内只能访问某个地址30次，限制大量流量以及恶意用户的非法操作。
+
